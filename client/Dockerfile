@@ -12,7 +12,5 @@ FROM nginx as server
 
 COPY ./default.conf /etc/nginx/conf.d/default.conf
 COPY --from=builder /app/build /usr/share/nginx/html
-# Expose port 80
+# Expose port 3000
 EXPOSE 3000
-# Start Nginx
-CMD ["nginx", "-g", "daemon off;"]
