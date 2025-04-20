@@ -23,12 +23,12 @@ jobs:
         run: docker build -t frontend -f ./client/dockerfile.dev ./client
       - name: run the tests
         run: docker run -e CI=true frontend npm test
-      - run: docker build -t nightstalker/backend ./server
-      - run: docker build -t nightstalker/worker ./worker
-      - run: docker build -t nightstalker/nginx ./nginx
-      - run: docker build -t nightstalker/client ./client
+      - run: docker build -t nightstalker5699/backend ./server
+      - run: docker build -t nightstalker5699/worker ./worker
+      - run: docker build -t nightstalker5699/nginx ./nginx
+      - run: docker build -t nightstalker5699/client ./client
 
-      - run: docker push nightstalker/backend
-      - run: docker push nightstalker/worker
-      - run: docker push nightstalker/nginx
-      - run: docker push nightstalker/client
+      - run: docker push nightstalker5699/backend
+      - run: docker push nightstalker5699/worker
+      - run: docker push nightstalker5699/nginx
+      - run: docker push nightstalker5699/client
