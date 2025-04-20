@@ -1,0 +1,51 @@
+version: "3"
+
+services:
+  postgres:
+    image: postgres:latest
+    environment:
+      - POSTGRES_PASSWORD=bomb5699
+  redis:
+    image: redis:latest
+  api:
+    restart: always
+    build:
+      context: ./server
+      dockerfile: dockerfile.dev
+    volumes:
+      - /app/node_modules
+      - ./server:/app
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - PGUSER=postgres
+      - PGHOST=postgres
+      - PGDATABASE=postgres
+      - PGPASSWORD=bomb5699
+      - PGPORT=5432
+  client:
+    build:
+      context: ./client
+      dockerfile: dockerfile.dev
+    volumes:
+      - /app/node_modules
+      - ./client:/app
+    environment:
+      - WDS_SOCKET_PORT=0
+  worker:
+    build:
+      context: ./worker
+      dockerfile: dockerfile.dev
+    volumes:
+      - /app/node_modules
+      - ./worker:/app
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: dockerfile.dev
+    restart: always
+    ports:
+      - 8000:80
