@@ -22,7 +22,7 @@ jobs:
       - name: tests
         run: docker build -t frontend -f ./client/dockerfile.dev ./client
       - name: run the tests
-        run: docker run frontend npm test
+        run: docker run -e CI=true frontend npm test
       - run: docker build -t nightstalker/backend ./server
       - run: docker build -t nightstalker/worker ./worker
       - run: docker build -t nightstalker/nginx ./nginx
