@@ -32,3 +32,15 @@ jobs:
       - run: docker push nightstalker5699/worker
       - run: docker push nightstalker5699/nginx
       - run: docker push nightstalker5699/client
+      - run: zip -r app.zip . -x "*.git*"
+      - name: deploy to beanstalk
+        uses: einaregilsson/beanstalk-deploy@v22
+        with:
+          region: eu-west-3
+          application_name: Multi-app
+          environment_name: Multi-app-env
+          version_label: ${{ github.sha }}
+          existing_bucket_name: elasticbeanstalk-eu-west-3-833334430487
+          aws_access_key: ${{ secrets.AWS_ACCESS }}
+          aws_secret_key: ${{ secrets.AWS_ACCESS_SECRET }}
+          deployment_package: app.zip
