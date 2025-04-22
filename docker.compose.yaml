@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+  api:
+    image: nightstalker5699/backend
+    environment:
+      - REDIS_HOST
+      - REDIS_PORT
+      - PGUSER
+      - PGHOST
+      - PGDATABASE
+      - PGPASSWORD
+      - PGPORT
+  Worker:
+    image: nightstalker5699/worker
+    environment:
+      - REDIS_HOST
+      - REDIS_PORT
+  client:
+    image: nightstalker5699/client
+
+  nginx:
+    image: nightstalker5699/nginx
+    ports:
+      - 80:80
