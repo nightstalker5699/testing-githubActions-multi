@@ -11,7 +11,7 @@ services:
       - PGDATABASE
       - PGPASSWORD
       - PGPORT
-  Worker:
+  worker:
     image: nightstalker5699/worker
     environment:
       - REDIS_HOST
