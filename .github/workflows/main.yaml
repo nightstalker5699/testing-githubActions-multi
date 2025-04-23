@@ -37,8 +37,8 @@ jobs:
         uses: einaregilsson/beanstalk-deploy@v22
         with:
           region: eu-west-3
-          application_name: Multi-app
-          environment_name: Multi-app-env
+          application_name: Multi-docker
+          environment_name: Multi-docker-env
           version_label: ${{ github.sha }}
           existing_bucket_name: elasticbeanstalk-eu-west-3-833334430487
           aws_access_key: ${{ secrets.AWS_ACCESS }}
